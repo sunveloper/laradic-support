@@ -1,5 +1,5 @@
 <?php
-namespace Sunveloper\LaradicSupport
+namespace Sunveloper\LaradicSupport;
 
 /**
  * Part of the Robin Radic's PHP packages.

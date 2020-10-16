@@ -5,7 +5,7 @@
  * MIT License and copyright information bundled with this package
  * in the LICENSE file or visit http://radic.mit-license.com
  */
-namespace Sunveloper\LaradicSupport
+namespace Sunveloper\LaradicSupport;
 
 use Underscore\Types\Object as BaseObject;
 
@@ -20,8 +20,6 @@ use Underscore\Types\Object as BaseObject;
  * {@inheritdoc}
  *
  */
-class Object extends BaseObject
+class __Object extends BaseObject
 {
-
 }
-

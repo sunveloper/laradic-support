@@ -2,7 +2,7 @@
 /**
  * Arrays
  */
-namespace Sunveloper\LaradicSupport
+namespace Sunveloper\LaradicSupport;
 
 /**
  * Array helper functionality.

@@ -5,7 +5,7 @@
  * MIT License and copyright information bundled with this package
  * in the LICENSE file or visit http://radic.mit-license.com
  */
-namespace Sunveloper\LaradicSupport
+namespace Sunveloper\LaradicSupport;
 
 use Illuminate\Filesystem\Filesystem as BaseFS;
 use RecursiveDirectoryIterator;
@@ -37,12 +37,10 @@ class Filesystem extends BaseFS
 
     public function __call($method, $parameters)
     {
-        if ( method_exists($this->symFs, $method) )
-        {
-            return call_user_func_array([ $this->symFs, $method ], $parameters);
+        if (method_exists($this->symFs, $method)) {
+            return call_user_func_array([$this->symFs, $method], $parameters);
         }
     }
-
 
     /**
      * Recursive glob
@@ -54,8 +52,7 @@ class Filesystem extends BaseFS
     public function rglob($pattern, $flags = 0)
     {
         $files = glob($pattern, $flags);
-        foreach ( glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir )
-        {
+        foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
             $files = array_merge($files, $this->rglob($dir . '/' . basename($pattern), $flags));
         }
 
@@ -71,12 +68,11 @@ class Filesystem extends BaseFS
      */
     public function rsearch($folder, $pattern)
     {
-        $dir      = new RecursiveDirectoryIterator($folder);
-        $ite      = new RecursiveIteratorIterator($dir);
-        $files    = new RegexIterator($ite, $pattern, RegexIterator::GET_MATCH);
+        $dir = new RecursiveDirectoryIterator($folder);
+        $ite = new RecursiveIteratorIterator($dir);
+        $files = new RegexIterator($ite, $pattern, RegexIterator::GET_MATCH);
         $fileList = array();
-        foreach ( $files as $file )
-        {
+        foreach ($files as $file) {
             $fileList = array_merge($fileList, $file);
         }
 

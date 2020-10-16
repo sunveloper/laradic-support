@@ -5,7 +5,7 @@
  * MIT License and copyright information bundled with this package
  * in the LICENSE file or visit http://radic.mit-license.com
  */
-namespace Sunveloper\LaradicSupport
+namespace Sunveloper\LaradicSupport;
 
 use Laradic\Support\Stringy\Stringy;
 
@@ -133,16 +133,14 @@ use Laradic\Support\Stringy\Stringy;
  * @method static mixed countSubstr($substring, $caseSensitive)
  * @method static mixed regexReplace($pattern, $replacement, $options)
  */
-class String
+class __String
 {
     /** @return Stringy */
     public function getStringyString($arguments)
     {
         $str = head($arguments);
-
         return Stringy::create($str);
     }
-
     /**
      * Create a new PHP Underscore string instance
      *
@@ -153,7 +151,6 @@ class String
     {
         return \Underscore\Types\String::from($string);
     }
-
     /**
      * Create a new Stringy string instance
      *
@@ -164,28 +161,19 @@ class String
     {
         return Stringy::create($string);
     }
-
-
     public function __call($name, $arguments)
     {
-        if ( method_exists('Underscore\Methods\StringMethods', $name) )
-        {
-            return forward_static_call_array([ 'Underscore\Types\String', $name ], $arguments);
-        }
-        else
-        {
+        if (method_exists('Underscore\Methods\StringMethods', $name)) {
+            return forward_static_call_array(['Underscore\Types\String', $name], $arguments);
+        } else {
             $object = $this->getStringyString($arguments);
-            if ( method_exists($object, $name) )
-            {
-                return call_user_func_array([ $object, $name ], array_slice($arguments, 1));
+            if (method_exists($object, $name)) {
+                return call_user_func_array([$object, $name], array_slice($arguments, 1));
             }
         }
     }
-
     public static function __callStatic($name, $arguments)
     {
-        return call_user_func_array([ new static(), $name ], $arguments);
+        return call_user_func_array([new static(), $name], $arguments);
     }
-
-
 }

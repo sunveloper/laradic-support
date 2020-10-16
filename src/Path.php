@@ -1,4 +1,4 @@
-<?php namespace Sunveloper\LaradicSupport
+<?php namespace Sunveloper\LaradicSupport;
 
 /**
  * Part of the Radic packges.
@@ -40,20 +40,16 @@ class Path extends BasePath
     {
 
         $args = func_get_args();
-        if(func_num_args() === 1 and is_array($args[0]))
-        {
+        if (func_num_args() === 1 and is_array($args[0])) {
             $args = $args[0];
         }
-        foreach($args as $i => $arg)
-        {
+        foreach ($args as $i => $arg) {
             $args[$i] = String::removeRight($args[$i], '/');
-            if($i > 0)
-            {
-                $args[ $i ] = String::removeLeft($args[$i], '/');
+            if ($i > 0) {
+                $args[$i] = String::removeLeft($args[$i], '/');
             }
         }
         return join(DIRECTORY_SEPARATOR, $args);
-
 
     }
 }

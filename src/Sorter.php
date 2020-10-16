@@ -5,7 +5,7 @@
  * MIT License and copyright information bundled with this package
  * in the LICENSE file or visit http://radic.mit-license.com
  */
-namespace Sunveloper\LaradicSupport
+namespace Sunveloper\LaradicSupport;
 
 use Laradic\Support\Contracts\Dependable;
 use Laradic\Support\Contracts\Sortable;
